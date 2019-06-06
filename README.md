@@ -113,30 +113,36 @@ If you're not running PowerShell as an Administrator, you might see error messag
 
 It outputs objects (hashtables) for each event, suitable for the Powershell pipeline and conversion to other formats such as JSON.  It is a wrapper around Get-WinEvent and supports all the same parameters except -ListLog and -ListProvider.
 
-Additional information and examples for Get-WinEvent, most of which apply to Get-EnhancedWinEvent, is available at https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent.
+Additional information and examples for Get-WinEvent, most of which apply to Get-EnhancedWinEvent, is available at [from Microsoft](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent).
 
-## Examples
+## Usage and Examples
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\Users\me\Desktop\Application.evtx"
+PS C:\> Import-Module .\path\to\Get-EnhancedWinEvent.psm1
+```
+
+Import the module to get access to the `Get-EnhancedWinEvent` cmdlet
+
+```powershell
+PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Application.evtx"
 ```
 
 Gets all events from the provided Application.evtx file
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\Users\me\Desktop\Security.evtx" -FilterXPath "*[System[EventID=4624]"
+PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Security.evtx" -FilterXPath "*[System[EventID=4624]"
 ```
 
 Gets all logon events (ID 4624) from the provided Security.evtx file.
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\Users\me\Desktop\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25
+PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25
 ```
 
 Gets at most the newest 25 logon events (ID 4624) from the provided Security.evtx file.
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\Users\me\Desktop\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25 | ConvertTo-Json -Compress -Depth 100 | Out-File ./application.test.json -Encoding utf8
+PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25 | ConvertTo-Json -Compress -Depth 100 | Out-File ./application.test.json -Encoding utf8
 ```
 
 Gets at most the newest 25 logon events (ID 4624) from the provided Security.evtx file, which is piped to ConvertTo-Json to get nice compressed, serialized output (-Depth is set to the max of 100 because the default is 2, leading to frustrating bugs).
