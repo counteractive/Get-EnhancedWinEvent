@@ -124,25 +124,25 @@ PS C:\> Import-Module .\path\to\Get-EnhancedWinEvent.psm1
 Import the module to get access to the `Get-EnhancedWinEvent` cmdlet
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Application.evtx"
+PS C:\> Get-EnhancedWinEvent -Path ".\Application.evtx"
 ```
 
 Gets all events from the provided Application.evtx file
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Security.evtx" -FilterXPath "*[System[EventID=4624]"
+PS C:\> Get-EnhancedWinEvent -Path ".\Security.evtx" -FilterXPath "*[System[EventID=4624]"
 ```
 
 Gets all logon events (ID 4624) from the provided Security.evtx file.
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25
+PS C:\> Get-EnhancedWinEvent -Path ".\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25
 ```
 
 Gets at most the newest 25 logon events (ID 4624) from the provided Security.evtx file.
 
 ```powershell
-PS C:\> Get-EnhancedWinEvent -Path "C:\path\to\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25 | ConvertTo-Json -Compress -Depth 100 | Out-File ./application.test.json -Encoding utf8
+PS C:\> Get-EnhancedWinEvent -Path ".\Security.evtx" -FilterXPath "*[System[EventID=4624]" -MaxEvents 25 | ConvertTo-Json -Depth 100 | Out-File ./security.json -Encoding utf8
 ```
 
 Gets at most the newest 25 logon events (ID 4624) from the provided Security.evtx file, which is piped to ConvertTo-Json to get nice compressed, serialized output (-Depth is set to the max of 100 because the default is 2, leading to frustrating bugs).
@@ -255,6 +255,6 @@ Get-EnhancedWinEvent, like Get-WinEvent, runs on Windows Vista, Windows Server 2
 
 Get-EnhancedWinEvent, like Get-WinEvent, is not supported in Windows Pre-installation Environment (Windows PE).
 
-## License
+## License and Notice
 
-See the included [`LICENSE`](./LICENSE) file.
+See the included [`LICENSE`](./LICENSE) file for license terms and [NOTICE](./NOTICE) file for attribution.
