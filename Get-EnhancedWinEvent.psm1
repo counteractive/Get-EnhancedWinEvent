@@ -177,7 +177,7 @@ Get-EnhancedWinEvent, like Get-WinEvent, is not supported in Windows Pre-install
     )
 
     $events = Get-WinEvent @PSBoundParameters
-    Write-Verbose ("processing " + $events.Count + " event(s) from $Path")
+    Write-Verbose ("processing $($events.Count) event(s)")
 
     foreach ($event in $events){
 
@@ -194,8 +194,8 @@ Get-EnhancedWinEvent, like Get-WinEvent, is not supported in Windows Pre-install
         Write-Output $eventHash
 
         $i = $i + 1
-        $progress = [math]::Round( ($i/$events.Count) * 100, 2)
-        Write-Progress -Activity ("Processing " + $events.Count + " events from $Path") -Status "$progress% Complete:" -PercentComplete $progress
+        $progress = [math]::Round(($i/$events.Count) * 100, 2)
+        Write-Progress -Activity ("Processing $($events.Count) event(s)") -Status "$progress% Complete:" -PercentComplete $progress
     }
 }
 
