@@ -255,6 +255,8 @@ Get-EnhancedWinEvent, like Get-WinEvent, runs on Windows Vista, Windows Server 2
 
 Get-EnhancedWinEvent, like Get-WinEvent, is not supported in Windows Pre-installation Environment (Windows PE).
 
+Submit issues, contribute, and view the license at the [github repo](https://github.com/counteractive).
+
 ## License and Notice
 
 See the included [`LICENSE`](./LICENSE) file for license terms and [NOTICE](./NOTICE) file for attribution.
